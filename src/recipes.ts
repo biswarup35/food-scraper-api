@@ -26,7 +26,7 @@ const recipes = async (req: Request, res: Response) => {
       const time_to_prepare =
         recipe.querySelector("span.SrcCrd-ph_im-ft-nu")?.textContent ?? "N/A";
 
-      const recipe_id =
+      const id =
         recipe
           .querySelector("a.crd_ttl")
           ?.getAttribute("href")
@@ -40,11 +40,16 @@ const recipes = async (req: Request, res: Response) => {
         title:
           recipe.querySelector("img.lz_img")?.getAttribute("title") ?? "N/A",
       };
+
+      const recipe_id = `${title.toLocaleLowerCase().replace(/ /g, "-")}-${id}`;
       return { recipe_id, title, time_to_prepare, image };
     });
-    res.status(200).send(recipes);
+    res.status(200).send({
+      status: "success",
+      recipes,
+    });
   } catch (error) {
-    res.send({ message: "Something went wrong" });
+    res.send({ status: "Something went wrong" });
   }
 };
 export default recipes;
