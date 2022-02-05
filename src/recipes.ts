@@ -3,8 +3,8 @@ import { JSDOM } from "jsdom";
 import axios from "axios";
 const recipes = async (req: Request, res: Response) => {
   try {
-    const { page = 1 } = req.query;
-    const url = `https://food.ndtv.com/recipe/recipe-load-more/type/recipe/page/${page}/query/indian/lang/1`;
+    const { page = 1, category = "indian" } = req.query;
+    const url = `https://food.ndtv.com/recipe/recipe-load-more/type/recipe/page/${page}/query/${category}/lang/1`;
     const { data: html } = await axios.get(url, {
       headers: {
         Accept:
