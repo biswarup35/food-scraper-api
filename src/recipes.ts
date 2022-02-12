@@ -49,6 +49,8 @@ const recipes = async (req: Request, res: Response) => {
       recipes,
     });
   } catch (error) {
+    console.log(error);
+    
     res.send({ status: "Something went wrong" });
   }
 };

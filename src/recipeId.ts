@@ -70,6 +70,8 @@ const recipeId = async (req: Request, res: Response) => {
       data: { recipe_id, title, image, description, meta, ingredients, steps },
     });
   } catch (error) {
+    console.log(error);
+
     res.send({ status: "Something went wrong" });
   }
 };
