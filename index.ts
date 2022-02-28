@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import recipes from "./src/recipes";
 import recipeId from "./src/recipeId";
+import categoryRecipes from "./src/categoryRecipes";
 
 const app = express();
 const PORT = process.env.PORT ?? 5000;
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/recipes", recipes);
 app.get("/recipes/:recipe_id", recipeId);
+app.get("/recipes/category/:category", categoryRecipes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
